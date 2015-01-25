@@ -4,6 +4,8 @@ author: "Gustavo Gialluisi"
 date: "Sunday, January 25, 2015"
 ---
 
+# Getting and Cleaning Data
+## Course Project Files
 
 This file describes my proposed solution for the Course Project of the Getting and Cleaning Data Coursera course[1].
 
