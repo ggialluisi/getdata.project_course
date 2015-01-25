@@ -1,12 +1,8 @@
-==================================================================
-Getting and Cleaning Data
-Course Project
-==================================================================
-Gustavo Pipolo Gialluisi
-Geo Saúde Gerenciadora
-São Paulo/SP - Brasil
-geosaude.com.br
-==================================================================
+---
+title: "Getting and Cleaning Data - Course Project"
+author: "Gustavo Gialluisi"
+date: "Sunday, January 25, 2015"
+---
 
 
 This file describes my proposed solution for the Course Project of the Getting and Cleaning Data Coursera course[1].
@@ -15,7 +11,7 @@ This file describes my proposed solution for the Course Project of the Getting a
 I'll transcribe below the project assignment:
 
 
--------------------------------------------------------------------
+* * * * * * * * *
 The purpose of this project is to demonstrate your ability to collect, work with, and clean a data set. The goal is to prepare tidy data that can be used for later analysis. You will be graded by your peers on a series of yes/no questions related to the project. You will be required to submit: 1) a tidy data set as described below, 2) a link to a Github repository with your script for performing the analysis, and 3) a code book that describes the variables, the data, and any transformations or work that you performed to clean up the data called CodeBook.md. You should also include a README.md in the repo with your scripts. This repo explains how all of the scripts work and how they are connected.  
 
 One of the most exciting areas in all of data science right now is wearable computing - see for example this article . Companies like Fitbit, Nike, and Jawbone Up are racing to develop the most advanced algorithms to attract new users. The data linked to from the course website represent data collected from the accelerometers from the Samsung Galaxy S smartphone. A full description is available at the site where the data was obtained: 
@@ -35,7 +31,9 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 5) From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
 Good luck!
--------------------------------------------------------------------
+
+* * * * * * * * *
+
 
 
 
@@ -54,16 +52,19 @@ Then run in R:
 When you source it, the script will:
 
 0) Run library on stringr and deplyr packages that are pre-requisites to source the 'run_analysis.R' file.
+
 1) Setup project files:
 
-	Creates './data' folder if it's not there.
+Creates './data' folder if it's not there.
 
-	If 'UCI HAR Dataset' folder is not already on the './data' folder then {
-		1 - If the file 'getdata-projectfiles-UCI-HAR-Dataset.zip' is not already in the "./data" folder, then 
-			the script will download the zip project file to the folder "./data"
-		2 - Extract the zip file to the folder "./data", creating the './data/UCI HAR Dataset' folder
-	}
-	
+If 'UCI HAR Dataset' folder is not already on the './data' folder then {
+
+	1 - If the file 'getdata-projectfiles-UCI-HAR-Dataset.zip' is not already in the "./data" folder, then the script will download the zip project file to the folder "./data".
+    
+	2 - Extract the zip file to the folder "./data", creating the './data/UCI HAR Dataset' folder
+
+}
+
 2) Create the processDataSet(dataset) function, that will be described in details below.
 
 3) Create the run_analysis() function, that will get processed data using processDataSet("test") and processDataSet("train"), merge them, and summarize this merged data into the tidy data set asked in the item 5. The funcion returns this tidy data set.
@@ -86,10 +87,9 @@ And it should be read using:
 
 
 
-Is this data really tidy?
-======================================
+#### Is this data really tidy?
 
-After all course lectures, when I got a lot of columns names containing "_X", "_Y" and "_Z", or "_mean", "_std", it seemed that, for instance "tBodyAcc_mean_X" should be decomposed into After all course lectures, when I got a lot of columns names containing "_X", "_Y" and "_Z", or "_mean", "_std", it seemed that, for instance "tBodyAcc_mean_X" should be decomposed into 4 variables: 'domain' (time or frequency), 'measure', 'function' (mean, std) and 'axis'(X, Y, Z).
+After all course lectures, when I got a lot of columns names containing "_X", "_Y" and "_Z", or "_mean", "_std", it seemed that, for instance "tBodyAcc_mean_X" should be decomposed into 4 variables: 'domain' (time or frequency), 'measure', 'function' (mean, std) and 'axis'(X, Y, Z).
 
 Fortunatelly, we have our discussion groups, and David Antolino, Edward William Kuns and David Hood commented on the thread called 'Tidy data and the assignment'[3], explaining that "tBodyAcc_mean_X" is a single variable.
 
@@ -100,12 +100,12 @@ Quoting:
 
 "In addition to Edward's good answer, you would find that if you do try and decompose it the data does not make a complete set. In the male and female example from swirl all of the data fits into a set. This data will keep hitting entries that need NA added, which is a sign that the variable hasn't correctly matched a set of data." (David Hood)
 
-Thank you guys!
+(Thank you guys!)
 
 
 
-The processDataSet(dataset) function
-======================================
+#### The processDataSet(dataset) function
+
 
 Given the parameter dataset as "test" or "train", the processDataSet function does the following:
 
@@ -124,9 +124,13 @@ Given the parameter dataset as "test" or "train", the processDataSet function do
 7) Add the subject column, from the 'subject_[dataset].txt' file.
 
 8) Set up activity labels, following this steps:
+
 8.1) read the right 'Y_[dataset]' file
+
 8.2) add it as 'idactivity' column
+
 8.3) merge with activity_labels
+
 8.4) remove column idactivity
 
 
@@ -137,8 +141,7 @@ And finally returns the processed data.
 
 
 
-References:
-============
+#### References:
 
 [0] Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012
 
@@ -149,7 +152,7 @@ https://class.coursera.org/getdata-010/human_grading
 
 [2] David's Project FAQ (discussion forum post)
 David Hood
-org/getdata-010/forum/thread?thread_id=49
+https://class.coursera.org/getdata-010/forum/thread?thread_id=49
 
 [3] Tidy data and the assignment (discussion forum post)
 David Hood, very well commented by Edward William Kuns
